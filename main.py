@@ -8,8 +8,6 @@ from lightgbm import LGBMRegressor
 
 import streamlit
 
-print(np.__version__)
-
 #--------------model --------------#
 model = pickle.load(open('utils/model.pkl', 'rb'))
 ss = pickle.load(open('utils/ss_scaler.pkl', 'rb'))
@@ -21,5 +19,5 @@ X_test_trans = ss.transform(X_test)
 
 model.fit(X_test_trans, y_test)
 pred = model.predict(X_test_trans)
-print(np.sqrt(mean_squared_error(y_test, pred)))
-print(r2_score(y_test, pred))
+print('RMSE: ', np.sqrt(mean_squared_error(y_test, pred)))
+print('R2: ', r2_score(y_test, pred))
